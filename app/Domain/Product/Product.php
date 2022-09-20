@@ -7,6 +7,8 @@ use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Selectors;
 
 class Product extends Model
 {
@@ -31,6 +33,11 @@ class Product extends Model
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function selectors(): hasMany
+    {
+        return $this->hasMany(Selectors::class, 'product_id', 'id');
     }
 
     public function getItemPrice(): Price

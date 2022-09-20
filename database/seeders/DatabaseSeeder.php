@@ -8,13 +8,20 @@ use App\Domain\Coupon\Coupon;
 use App\Domain\Customer\Customer;
 use App\Domain\Product\Product;
 use App\Models\User;
+use Database\Factories\CategoriesFactory;
+use Database\Factories\CitiesFactory;
+use Database\Factories\SelectorsFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $products = Product::factory(100)->create();
+        $products = Product::factory(50000)->create();
+        //Заполняем таблицу фильтров
+        $cities = CitiesFactory::new()->count(30)->create();
+        $categories = CategoriesFactory::new()->count(100)->create();
+        $selectors = SelectorsFactory::new()->count(230)->create();
 
         Coupon::factory()->create();
 
